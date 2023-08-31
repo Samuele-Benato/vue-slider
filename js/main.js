@@ -43,6 +43,7 @@ createApp({
         this.activeSlide = 0;
       }
     },
+
     prevSlide() {
       if (this.activeSlide > 0) {
         this.activeSlide--;
@@ -50,5 +51,26 @@ createApp({
         this.activeSlide = this.slides.length - 1;
       }
     },
+
+    goToSlide(index) {
+      this.activeSlide = index;
+    },
+
+    autoplay() {
+      if (!this.autoplay) {
+        this.autoplay = setInterval(this.nextSlide, 2500);
+      }
+    },
+
+    stopAutoplay() {
+      if (this.autoplay) {
+        clearInterval(this.autoplay);
+        this.autoplay = false;
+      }
+    },
+  },
+
+  created() {
+    this.autoplay;
   },
 }).mount("#app");
